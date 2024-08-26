@@ -4,7 +4,6 @@ import { aql, type DatabaseManagerInstance, type LoggerService, type ManagerConf
 import { type OutcomeResult, type RuleConfig, type RuleRequest, type RuleResult } from '@frmscoe/frms-coe-lib/lib/interfaces';
 import { unwrap } from '@frmscoe/frms-coe-lib/lib/helpers/unwrap';
 
-
 export async function handleTransaction(
   req: RuleRequest,
   determineOutcome: (value: number, ruleConfig: RuleConfig, ruleResult: RuleResult) => RuleResult,

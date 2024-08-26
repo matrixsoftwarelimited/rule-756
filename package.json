@@ -1,7 +1,7 @@
 {
-  "name": "@matrixsoftwarelimited/rule-901",
+  "name": "@matrixsoftwarelimited/rule-756",
   "version": "2.0.0",
-  "description": "Rule 901 is to calculate the number of transactions the debtor has made over a period",
+  "description": "Rule 756 is to calculate the number of transactions the debtor has made over a period",
   "main": "index.ts",
   "files": [
     "lib"
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matrixsoftwarelimited/rule-901.git"
+    "url": "git+https://github.com/matrixsoftwarelimited/rule-756.git"
   },
   "keywords": [
     "rule-091"
@@ -35,9 +35,9 @@
   "author": "johanfol",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/matrixsoftwarelimited/rule-901/issues"
+    "url": "https://github.com/matrixsoftwarelimited/rule-756/issues"
   },
-  "homepage": "https://github.com/matrixsoftwarelimited/rule-901#readme",
+  "homepage": "https://github.com/matrixsoftwarelimited/rule-756#readme",
   "dependencies": {
     "@frmscoe/frms-coe-lib": "4.0.0",
     "ts-node": "^10.9.2"
