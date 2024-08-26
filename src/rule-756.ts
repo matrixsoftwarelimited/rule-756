@@ -42,6 +42,27 @@ export async function handleTransaction(
     };
   }
 
+  // Step 1.5: Check transaction amount (New Step)
+
+  loggerService.trace('Step 1.5 - Transaction amount check', context, msgId);
+
+  // Access the amount from the first ChrgsInf object in TxInfAndSts
+  const transactionAmount = req.transaction.FIToFIPmtSts.TxInfAndSts.ChrgsInf[0]?.Amt.Amt; // Assuming the first charge info is what you want to check
+  const amountLimit = 200;
+
+  if (transactionAmount > amountLimit) {
+    const highAmountAlert = {
+      reason: `Transaction amount exceeds ${amountLimit}`,
+      subRuleRef: '.x01', // Assign an appropriate subRuleRef
+    };
+
+    return {
+      ...ruleRes,
+      reason: highAmountAlert.reason,
+      subRuleRef: highAmountAlert.subRuleRef,
+    };
+  }
+
   // Step 2: Query Setup
 
   loggerService.trace('Step 2 - Query setup', context, msgId);
