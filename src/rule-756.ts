@@ -91,7 +91,7 @@ export async function handleTransaction(
 
   loggerService.trace('Step 4 - Query post-processing', context, msgId);
 
-  /* eslint-disable-next-line @typescript-eslint/no-unsafe-argument */
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const count = unwrap(numberOfRecentTransactions);
 
   if (count == null) {
