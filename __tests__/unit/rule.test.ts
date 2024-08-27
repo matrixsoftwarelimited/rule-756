@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { handleTransaction } from '../../src'; // Rule-902'nin doğru yolu
-import { LoggerService } from '@frmscoe/frms-coe-lib';
+import { DatabaseManagerInstance, LoggerService, ManagerConfig } from '@frmscoe/frms-coe-lib';
 import { NetworkMap, Pacs002, type RuleConfig, type RuleRequest, type RuleResult } from '@frmscoe/frms-coe-lib/lib/interfaces';
 
 const loggerService: LoggerService = new LoggerService();
@@ -93,6 +93,14 @@ const ruleRes: RuleResult = {
   reason: '',
 };
 
+// Mock for determineOutcome function
+const determineOutcome = (value: number, ruleConfig: RuleConfig, ruleResult: RuleResult): RuleResult => {
+  // Simplified logic for test
+  return ruleResult;
+};
+
+const mockDatabaseManager: DatabaseManagerInstance<ManagerConfig> = {} as DatabaseManagerInstance<ManagerConfig>;
+
 describe('Rule-902 Tests', () => {
   let req: RuleRequest;
 
@@ -102,7 +110,7 @@ describe('Rule-902 Tests', () => {
 
   test('Should trigger alert when amount exceeds 100', async () => {
     req = getMockRequest(150); // Tutar 150 olarak ayarlanır
-    const res = await handleTransaction(req, ruleRes, loggerService, ruleConfig);
+    const res = await handleTransaction(req, determineOutcome, ruleRes, loggerService, ruleConfig, mockDatabaseManager);
 
     expect(res).toEqual({
       ...ruleRes,
@@ -113,14 +121,14 @@ describe('Rule-902 Tests', () => {
 
   test('Should not trigger alert when amount is 100 or less', async () => {
     req = getMockRequest(100); // Tutar 100 olarak ayarlanır
-    const res = await handleTransaction(req, ruleRes, loggerService, ruleConfig);
+    const res = await handleTransaction(req, determineOutcome, ruleRes, loggerService, ruleConfig, mockDatabaseManager);
 
     expect(res).toEqual(ruleRes); // Alert tetiklenmez, orijinal sonuç döner
   });
 
   test('Should not trigger alert when amount is below 100', async () => {
     req = getMockRequest(50); // Tutar 50 olarak ayarlanır
-    const res = await handleTransaction(req, ruleRes, loggerService, ruleConfig);
+    const res = await handleTransaction(req, determineOutcome, ruleRes, loggerService, ruleConfig, mockDatabaseManager);
 
     expect(res).toEqual(ruleRes); // Alert tetiklenmez, orijinal sonuç döner
   });

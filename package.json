@@ -1,6 +1,6 @@
 {
   "name": "@matrixsoftwarelimited/rule-756",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Rule 756 is to calculate the number of transactions the debtor has made over a period",
   "main": "index.ts",
   "files": [
